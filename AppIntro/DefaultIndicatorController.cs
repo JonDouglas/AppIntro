@@ -57,29 +57,26 @@ namespace AppIntro
 
         public void SelectPosition(int index)
         {
-            _currentPosition = index;
-            for (int i = 0; i < _slideCount; i++)
+            if (index >= 0)
             {
-                int drawableId;
-                if (i == index)
+                _currentPosition = index;
+                for (int i = 0; i < _slideCount; i++)
                 {
-                    drawableId = (Resource.Drawable.indicator_dot_white);
-                }
-                else
-                {
-                    drawableId = (Resource.Drawable.indicator_dot_grey);
-                }
+                    var drawableId = (i == index)
+                        ? (Resource.Drawable.indicator_dot_white)
+                        : (Resource.Drawable.indicator_dot_grey);
 
-                Drawable drawable = ContextCompat.GetDrawable(_context, drawableId);
-                if (selectedDotColor != DEFAULT_COLOR && i == index)
-                {
-                    drawable.Mutate().SetColorFilter(new Color(selectedDotColor), PorterDuff.Mode.SrcIn);
+                    Drawable drawable = ContextCompat.GetDrawable(_context, drawableId);
+                    if (selectedDotColor != DEFAULT_COLOR && i == index)
+                    {
+                        drawable.Mutate().SetColorFilter(new Color(selectedDotColor), PorterDuff.Mode.SrcIn);
+                    }
+                    if (unselectedDotColor != DEFAULT_COLOR && i != index)
+                    {
+                        drawable.Mutate().SetColorFilter(new Color(unselectedDotColor), PorterDuff.Mode.SrcIn);
+                    }
+                    _dots[i].SetImageDrawable(drawable);
                 }
-                if (unselectedDotColor != DEFAULT_COLOR && i != index)
-                {
-                    drawable.Mutate().SetColorFilter(new Color(unselectedDotColor), PorterDuff.Mode.SrcIn);
-                }
-                _dots[i].SetImageDrawable(drawable);
             }
         }
 
