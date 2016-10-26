@@ -19,7 +19,7 @@ Create a new `Activity` that extends `AppIntro`:
 
 ```c#
  [Activity(Theme = "@style/FullscreenTheme")]
-    public class DefaultIntro : BaseIntro
+    public class DefaultIntro : AppIntro
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
