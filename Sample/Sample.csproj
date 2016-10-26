@@ -45,6 +45,10 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AppIntro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AppIntro.1.0.0\lib\monoandroid70\AppIntro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Export" />
     <Reference Include="mscorlib" />
@@ -178,12 +182,6 @@
     <AndroidResource Include="Resources\layout\slide_policy_demo.xml" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\AppIntro\AppIntro.csproj">
-      <Project>{f6c88891-f69c-44d0-8f26-e313a8595298}</Project>
-      <Name>AppIntro</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_slide1.png" />
   </ItemGroup>

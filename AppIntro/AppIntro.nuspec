@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>AppIntro</id>
+    <version>1.0.0</version>
+    <authors>Jon Douglas</authors>
+    <owners>Jon Douglas</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/JonDouglas/AppIntro/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/JonDouglas/AppIntro</projectUrl>
+    <description>AppIntro is an Android Library that helps you make a cool intro for your app, like the ones in Google apps.</description>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>xamarin monodroid android appintro</tags>
+    <dependencies>
+      <dependency id="Xamarin.Android.Support.v7.AppCompat" version="24.2.1" />
+    </dependencies>
+  </metadata>
+</package>
