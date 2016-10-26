@@ -15,6 +15,10 @@ AppIntro is an Android Library that helps you make a **cool intro** for your app
 
 Add this project to your Xamarin.Android solution!
 
+Or download from NuGet:
+
+https://www.nuget.org/packages/AppIntro/1.0.0
+
 Create a new `Activity` that extends `AppIntro`:
 
 ```c#
