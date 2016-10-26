@@ -73,11 +73,11 @@ namespace AppIntro
                 Drawable drawable = ContextCompat.GetDrawable(_context, drawableId);
                 if (selectedDotColor != DEFAULT_COLOR && i == index)
                 {
-                    drawable.Mutate().SetColorFilter(ColorHelper.FromInt(selectedDotColor), PorterDuff.Mode.SrcIn);
+                    drawable.Mutate().SetColorFilter(new Color(selectedDotColor), PorterDuff.Mode.SrcIn);
                 }
                 if (unselectedDotColor != DEFAULT_COLOR && i != index)
                 {
-                    drawable.Mutate().SetColorFilter(ColorHelper.FromInt(unselectedDotColor), PorterDuff.Mode.SrcIn);
+                    drawable.Mutate().SetColorFilter(new Color(unselectedDotColor), PorterDuff.Mode.SrcIn);
                 }
                 _dots[i].SetImageDrawable(drawable);
             }

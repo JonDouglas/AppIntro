@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -63,7 +64,7 @@ namespace AppIntro
             t.Text = title;
             if (titleColor != 0)
             {
-                t.SetTextColor(ColorHelper.FromInt(titleColor));
+                t.SetTextColor(new Color(titleColor));
             }
             if (titleTypeface != null)
             {
@@ -75,7 +76,7 @@ namespace AppIntro
             d.Text = description;
             if (descColor != 0)
             {
-                d.SetTextColor(ColorHelper.FromInt(descColor));
+                d.SetTextColor(new Color(descColor));
             }
             if (descTypeface != null)
             {
@@ -85,7 +86,7 @@ namespace AppIntro
                 }
             }
             i.SetImageResource(drawable);
-            mainLayout.SetBackgroundColor(ColorHelper.FromInt(bgColor));
+            mainLayout.SetBackgroundColor(new Color(bgColor));
 
             return v;
         }
@@ -119,7 +120,7 @@ namespace AppIntro
 
         public void SetBackgroundColor(int backgroundColor)
         {
-            mainLayout.SetBackgroundColor(ColorHelper.FromInt(backgroundColor));
+            mainLayout.SetBackgroundColor(new Color(backgroundColor));
         }
     }
 }

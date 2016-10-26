@@ -86,7 +86,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseIntro2.cs" />
     <Compile Include="BaseIntro.cs" />
+    <Compile Include="CustomIntro.cs" />
     <Compile Include="DefaultIntro.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

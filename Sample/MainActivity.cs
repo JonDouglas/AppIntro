@@ -27,6 +27,13 @@ namespace Sample
             Intent intent = new Intent(this, typeof(DefaultIntro));
             StartActivity(intent);
         }
-    }
+
+        [Export("startCustomIntro")]
+        public void StartCustomIntro(View v)
+        {
+            Intent intent = new Intent(this, typeof(CustomIntro));
+            StartActivity(intent);
+        }
+}
 }
 

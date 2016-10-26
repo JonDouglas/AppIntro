@@ -18,19 +18,19 @@ namespace AppIntro
         public void SetBarColor(int color)
         {
             LinearLayout bottomBar = (LinearLayout) FindViewById(Resource.Id.bottom);
-            bottomBar.SetBackgroundColor(ColorHelper.FromInt(color));
+            bottomBar.SetBackgroundColor(new Color(color));
         }
 
         public void SetNextArrowColor(int color)
         {
             ImageButton nextButton = (ImageButton) FindViewById(Resource.Id.next);
-            nextButton.SetColorFilter(ColorHelper.FromInt(color));
+            nextButton.SetColorFilter(new Color(color));
         }
 
         public void SetSeparatorColor(int color)
         {
             TextView separator = (TextView) FindViewById(Resource.Id.bottom_separator);
-            separator.SetBackgroundColor(ColorHelper.FromInt(color));
+            separator.SetBackgroundColor(new Color(color));
         }
 
         public void SetSkipText(string text)
@@ -66,13 +66,13 @@ namespace AppIntro
         public void SetColorDoneText(int colorDoneText)
         {
             TextView doneText = (TextView) FindViewById(Resource.Id.done);
-            doneText.SetTextColor(ColorHelper.FromInt(colorDoneText));
+            doneText.SetTextColor(new Color(colorDoneText));
         }
 
         public void SetColorSkipButton(int colorSkipButton)
         {
             TextView skip = (TextView) FindViewById(Resource.Id.skip);
-            skip.SetTextColor(ColorHelper.FromInt(colorSkipButton));
+            skip.SetTextColor(new Color(colorSkipButton));
         }
 
         public void SetImageNextButton(Drawable imageNextButton)

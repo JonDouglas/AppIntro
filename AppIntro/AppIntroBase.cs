@@ -486,7 +486,7 @@ namespace AppIntro
         {
             if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
             {
-                Window.SetNavigationBarColor(ColorHelper.FromInt(color));
+                Window.SetNavigationBarColor(new Color(color));
             }
         }
 

@@ -27,11 +27,11 @@ namespace AppIntro
             _progressBar = (ProgressBar) View.Inflate(context, Resource.Layout.progress_indicator, null);
             if (selectedDotColor != DEFAULT_COLOR)
             {
-                _progressBar.ProgressDrawable.SetColorFilter(ColorHelper.FromInt(selectedDotColor), PorterDuff.Mode.SrcIn);
+                _progressBar.ProgressDrawable.SetColorFilter(new Color(selectedDotColor), PorterDuff.Mode.SrcIn);
             }
             if (unselectedDotColor != DEFAULT_COLOR)
             {
-                _progressBar.IndeterminateDrawable.SetColorFilter(ColorHelper.FromInt(unselectedDotColor), PorterDuff.Mode.SrcIn);
+                _progressBar.IndeterminateDrawable.SetColorFilter(new Color(unselectedDotColor), PorterDuff.Mode.SrcIn);
             }
             return _progressBar;
         }
@@ -52,7 +52,7 @@ namespace AppIntro
             this.selectedDotColor = color;
             if (_progressBar != null)
             {
-                _progressBar.ProgressDrawable.SetColorFilter(ColorHelper.FromInt(color), PorterDuff.Mode.SrcIn);
+                _progressBar.ProgressDrawable.SetColorFilter(new Color(color), PorterDuff.Mode.SrcIn);
             }
         }
 
@@ -61,7 +61,7 @@ namespace AppIntro
             this.unselectedDotColor = color;
             if (_progressBar != null)
             {
-                _progressBar.IndeterminateDrawable.SetColorFilter(ColorHelper.FromInt(color), PorterDuff.Mode.SrcIn);
+                _progressBar.IndeterminateDrawable.SetColorFilter(new Color(color), PorterDuff.Mode.SrcIn);
             }
         }
     }
