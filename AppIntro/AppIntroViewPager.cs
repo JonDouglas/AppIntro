@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Android.App;
 using Android.Content;
@@ -10,6 +11,7 @@ using Android.Runtime;
 using Android.Support.V4.View;
 using Android.Util;
 using Android.Views;
+using Android.Views.Animations;
 using Android.Widget;
 using Java.Interop;
 using Java.Lang.Reflect;
@@ -139,20 +141,35 @@ namespace AppIntro
 
         private void InitViewPagerScroller()
         {
-            //CONVERT VIA REFLECTION
-//            try
-//            {
-//                Field scroller = ViewPager.class.getDeclaredField("mScroller");
-//        scroller.setAccessible(true);
-//            Field interpolator = ViewPager.class.getDeclaredField("sInterpolator");
-//        interpolator.setAccessible(true);
-//
-//            mScroller = new ScrollerCustomDuration(getContext(),
-//                    (Interpolator) interpolator.get(null));
-//            scroller.set(this, mScroller);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+            try
+            {
+                IntPtr ViewPagerClass = JNIEnv.FindClass("android/support/v4/view/ViewPager");
+                IntPtr mScrollerProperty = JNIEnv.GetFieldID(ViewPagerClass, "mScroller", "Landroid/widget/Scroller;");
+                IntPtr sInterpolatorProperty = JNIEnv.GetFieldID(ViewPagerClass, "sInterpolator", "Landroid/widget/Scroller;");
+
+
+                mScroller = new ScrollerCustomDuration(Context);
+
+                JNIEnv.SetField(this.Handle, mScrollerProperty, mScroller.Handle);
+            }
+            catch (Exception ex)
+            {
+
+                mScroller = new ScrollerCustomDuration(Context);
+            }
+            //            try
+            //            {
+            //                Field scroller = ViewPager.class.getDeclaredField("mScroller");
+            //        scroller.setAccessible(true);
+            //            Field interpolator = ViewPager.class.getDeclaredField("sInterpolator");
+            //        interpolator.setAccessible(true);
+            //
+            //            mScroller = new ScrollerCustomDuration(getContext(),
+            //                    (Interpolator) interpolator.get(null));
+            //            scroller.set(this, mScroller);
+            //        } catch (Exception e) {
+            //            e.printStackTrace();
+            //        }
         }
 
         private bool DetectSwipeToRight(MotionEvent ev)

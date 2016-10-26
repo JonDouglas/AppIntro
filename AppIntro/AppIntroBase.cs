@@ -32,13 +32,13 @@ namespace AppIntro
         private const int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
         private static string INSTANCE_DATA_IMMERSIVE_MODE_ENABLED =
-            "com.github.paolorotolo.appintro_immersive_mode_enabled";
+            "com.jondouglas.appintro_immersive_mode_enabled";
 
         private static string INSTANCE_DATA_IMMERSIVE_MODE_STICKY =
-            "com.github.paolorotolo.appintro_immersive_mode_sticky";
+            "com.jondouglas.appintro_immersive_mode_sticky";
 
         private static string INSTANCE_DATA_COLOR_TRANSITIONS_ENABLED =
-            "com.github.paolorotolo.appintro_color_transitions_enabled";
+            "com.jondouglas.appintro_color_transitions_enabled";
 
         protected List<Fragment> fragments = new List<Fragment>();
 
@@ -125,12 +125,9 @@ namespace AppIntro
             backButton.Click += BackButtonOnClick;
 
             _pager.Adapter = _pagerAdapter;
-            //Port over https://github.com/PaoloRotolo/AppIntro/blob/master/library/src/main/java/com/github/paolorotolo/appintro/AppIntroBase.java#L870-L938
-            // To the respective events already exposed
-            //            _pager.addOnPageChangeListener(new PagerOnPageChangeListener());
-            //            _pager.setOnNextPageRequestedListener(this);
-            //
-            //            setScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
+            _pager.AddOnPageChangeListener(new PagerOnPageChangeListener(this));
+            _pager.SetOnNextPageRequestedListener(this);
+            SetScrollDurationFactor(DEFAULT_SCROLL_DURATION_FACTOR);
         }
 
         protected override void OnPostCreate(Bundle savedInstanceState)
@@ -799,13 +796,44 @@ namespace AppIntro
         {
             private AppIntroBase appIntroBase;
 
+            public PagerOnPageChangeListener(AppIntroBase appIntroBase)
+            {
+                this.appIntroBase = appIntroBase;
+            }
+
             public void OnPageScrollStateChanged(int state)
             {
             }
 
             public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
             {
-                throw new NotImplementedException();
+                if (appIntroBase.areColorTransitionsEnabled)
+                {
+                    if (position < appIntroBase._pagerAdapter.Count - 1)
+                    {
+                        if (appIntroBase._pagerAdapter.GetItem(position) is ISlideBackgroundColorHolder &&
+                            appIntroBase._pagerAdapter.GetItem(position + 1) is ISlideBackgroundColorHolder)
+                        {
+                            Fragment currentSlide = appIntroBase._pagerAdapter.GetItem(position);
+                            Fragment nextSlide = appIntroBase._pagerAdapter.GetItem(position + 1);
+
+                            ISlideBackgroundColorHolder currentSlideCasted = (ISlideBackgroundColorHolder) currentSlide;
+                            ISlideBackgroundColorHolder nextSlideCasted = (ISlideBackgroundColorHolder) nextSlide;
+
+                            if (currentSlide.IsAdded && nextSlide.IsAdded)
+                            {
+                                int newColor =
+                                    (int)
+                                    appIntroBase.argbEvaluator.Evaluate(positionOffset,
+                                        currentSlideCasted.GetDefaultBackgroundColor(),
+                                        nextSlideCasted.GetDefaultBackgroundColor());
+
+                                currentSlideCasted.SetBackgroundColor(new Color(newColor));
+                                nextSlideCasted.SetBackgroundColor(new Color(newColor));
+                            }
+                        }
+                    }
+                }
             }
 
             public void OnPageSelected(int position)
